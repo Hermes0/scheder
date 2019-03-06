@@ -1,0 +1,27 @@
+version: '3'
+services:
+#  rabbit:
+#    restart: unless-stopped
+#    image: rabbitmq:3-management
+#    volumes:
+#    - rabbit_data:/var/lib/rabbit/data
+#    ports:
+#    - 5672:5672/tcp
+#    - 15672:15672/tcp
+
+  postgres:
+    restart: unless-stopped
+    image: blacklabelops/postgres:latest
+    environment:
+       - POSTGRES_USER=admin
+       - POSTGRES_PASSWORD=admin
+       - POSTGRES_DB=sched
+       - POSTGRES_ENCODING=UNICODE
+    volumes:
+    - postgre_data:/var/lib/postgresql/data
+    ports:
+    - 5432:5432/tcp
+
+volumes:
+  rabbit_data:
+  postgre_data:
