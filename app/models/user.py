@@ -25,7 +25,22 @@ class UserModel(db.Model, UserMixin):
                             backref=db.backref('users', lazy='dynamic'))
 
     def __str__(self):
-        return self.name
+        return self.email
+
+    def is_admin(self) -> bool:
+        admin_role = RoleModel.query.filter_by(name="ADMIN").first()
+        if admin_role:
+            return self.has_role(admin_role)
+
+        return False
+
+    def has_role(self, role: RoleModel) -> bool:
+        user_role = UserRoles.query.filter_by(user_id=self.id).first()
+        if user_role:
+            if user_role.role_id == role.id:
+                return True
+
+        return False
 
 
 class UserRoles(db.Model):

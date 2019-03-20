@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="Vadim N. GCORE Labs">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/exception_page.css') }}">
+        <title>Scheder</title>
+    </head>
+    <body class="text-center">
+        <div>
+            <img src="{{ url_for('static', filename='img/error.gif')}}">
+            <h1>{{ name }} - {{ code }}</h1>
+            <h5>{{ description }}</h5>
+        </div>
+    </body>
+</html>

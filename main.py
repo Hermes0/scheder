@@ -1,17 +1,16 @@
+from flask import Flask
+
 from app import create_app, db
-from app.admin import setup_admin, enable_security
+from app.admin import setup_admin
 from app.config import DevConfig
+from app.security import enable_security
 
-app = create_app(DevConfig)
-data_store, _ = enable_security(app)
-
+app: Flask = create_app(DevConfig)
+data_store, _ = enable_security(app, db)
 setup_admin(app)
 
-#
-# @app.before_first_request
-# def setup_first_run():
-#     data_store.create_user(name="admin@sched.hk", password="admin")
-#     db.session.commit()
+from cmd import create_admin
 
-
-app.run(debug=True)
+if __name__ == "__main__":
+    _ = create_admin
+    app.run(debug=True)

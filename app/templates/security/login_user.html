@@ -1,17 +1,33 @@
-{% extends "base.html" %}
-{% block content %}
-    <h2>Sign In</h2>
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}
-        </p>
-        <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}
-        </p>
-        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-        <p>{{ form.submit() }}</p>
-    </form>
-{% endblock content%}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="Vadim N. GCORE Labs">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+
+        <title>Scheder</title>
+    </head>
+    <body class="text-center">
+        {% from "security/_macros.html" import render_field %}
+        <form class="form-signin" action="{{ url_for_security('login') }}" method="POST" name="login_user_form">
+            {{ login_user_form.hidden_tag() }}
+            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+            {{ login_user_form.email(class_="form-control", type="email", placeholder="Email address")}}
+            {{ login_user_form.password(class_="form-control",  type="password", placeholder="Password") }}
+            <div class="checkbox mb-3">
+                <label>
+                    {{ login_user_form.remember(type="checkbox") }}
+                    Remember me
+                </label>
+            </div>
+            {{ render_field(login_user_form.next) }}
+            {{ login_user_form.submit(class_="btn btn-lg btn-primary btn-block") }}
+            {{ login_user_form.errors }}
+            <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
+        </form>
+    </body>
+</html>
