@@ -17,9 +17,9 @@ def main():
 
 @app.route("/add-action")
 def add_action():
-    return render_template("form.html")
+    return render_template("form.html", user=current_user)
 
 
 @app.route("/history")
 def history():
-    return render_template("history.html")
+    return render_template("history.html", user=current_user)

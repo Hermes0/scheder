@@ -6,14 +6,13 @@
         <meta name="author" content="Vadim N. GCORE Labs">
 
         <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
         <!--<link rel="icon" href="../../../../favicon.ico">-->
 
         <title>Scheder</title>
     </head>
     <body class="bg-light">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-            <a class="navbar-brand" href="#">SCHEDER</a>
+            <a class="navbar-brand" href="{{ url_for('main') }}">SCHEDER</a>
             <button
                 type="button"
                 class="navbar-toggler"
@@ -27,37 +26,30 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ url_for('main') }}">Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('add_action') }}">Add action</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('history') }}">History</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a
-                            id="dropdown01"
-                            class="nav-link dropdown-toggle"
-                            href="http://example.com"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false">
-                                Dropdown
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
+                    {% if user.is_admin() %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('admin.index') }}">Admin controls</a>
                     </li>
+                    {% endif %}
                 </ul>
-                <div role="user">
-                    {{is_admin}}
-                    <a class="nav-link" href="{{ url_for('security.logout') }}">Logout</a>
+                <div class="form-inline my-2 my-lg-0">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <span class="nav-link">{{user.name}}</span>
+                        </li>
+                        <li>
+                             <a class="btn btn-outline-success my-2 my-sm-0"
+                               href="{{ url_for('security.logout') }}"
+                               style="margin-left: 10px;">Logout</a>
+                        </li>
+                    </ul>
+
                 </div>
                 <!--<ul class="navbar-nav mr-auto my-2 my-lg-0">-->
                     <!--<li class="nav-item">-->
@@ -72,5 +64,6 @@
         </nav>
         <main role="main" class="container" style="margin-top: 100px;">
             {% block content %}{% endblock %}
+        </main>
     </body>
 </html>
