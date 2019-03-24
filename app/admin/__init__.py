@@ -3,6 +3,8 @@ from flask_admin.contrib.sqla import ModelView
 from flask_security import current_user
 
 from app.models.action import *
+from app.models.scenario import ScenarioModel
+from app.models.schedule import *
 from app.models.user import *
 
 
@@ -18,3 +20,7 @@ def setup_admin(app):
 
     admin.add_view(ModelView(RoleModel, db.session))
     admin.add_view(ModelView(UserModel, db.session))
+
+    admin.add_view(ModelView(ScenarioModel, db.session))
+    admin.add_view(ModelView(ScheduleModel, db.session))
+    admin.add_view(ModelView(PeriodicityTypeModel, db.session))

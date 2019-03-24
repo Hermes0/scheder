@@ -23,6 +23,7 @@ class UserModel(db.Model, UserMixin):
 
     roles = db.relationship('RoleModel', secondary="users_roles",
                             backref=db.backref('users', lazy='dynamic'))
+    scenario = db.relationship('ScenarioModel', backref='scenario_owner', lazy='dynamic')
 
     def __str__(self):
         return self.email
