@@ -6,7 +6,7 @@ class PeriodicityTypeModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False, unique=True)
 
-    db.relationship('ScheduleModel', backref='type', lazy='dynamic')
+    schedule = db.relationship('ScheduleModel', backref='type', lazy='dynamic')
 
     def __str__(self):
         return self.name
