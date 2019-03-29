@@ -2,6 +2,8 @@ from flask import render_template
 from flask_security import login_required, current_user
 
 from app import app
+from app.form.schedule import ScheduleForm
+from app.models.schedule import PeriodicityTypeModel, ScheduleModel
 
 
 @app.route("/")
@@ -15,9 +17,31 @@ def main():
     )
 
 
-@app.route("/add-action")
-def add_action():
-    return render_template("form.html", user=current_user)
+@app.route("/test")
+def tests():
+    form = ScheduleForm()
+
+    form.type.choices = [
+        (ptype.id, ptype.name) for ptype in PeriodicityTypeModel.query.all()
+    ]
+
+    return render_template("test.html", form=form, user=current_user)
+
+
+@app.route("/scenarios")
+def scenarios():
+    schedules = ScheduleModel.query.all()
+    schedule_form = ScheduleForm()
+    schedule_form.type.choices = [
+        (p_type.id, p_type.name) for p_type in PeriodicityTypeModel.query.all()
+    ]
+
+    return render_template(
+        "form.html",
+        user=current_user,
+        schedules=schedules,
+        schedule_form=schedule_form
+    )
 
 
 @app.route("/history")

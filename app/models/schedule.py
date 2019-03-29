@@ -16,6 +16,7 @@ class ScheduleModel(db.Model):
     __tablename__ = 'schedule'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False, unique=True)
+    description = db.Column(db.String(80), nullable=True)
     periodicity_type = db.Column(db.Integer, db.ForeignKey('periodicity_type.id'))
     run_time = db.Column(db.Date, nullable=True, unique=True)
 
