@@ -1,5 +1,7 @@
-from sqlalchemy.types import TypeDecorator, VARCHAR
 import json
+
+from sqlalchemy.types import TypeDecorator, VARCHAR
+
 from app import db
 
 
@@ -35,6 +37,11 @@ class RequestActionModel(db.Model):
     url = db.Column(db.String(100), nullable=False)
     method = db.Column(db.String(100), nullable=False)
     headers = db.Column(JSON(255), nullable=True)
+
+    scenario = db.relationship('ScenarioModel', backref='request_action', lazy='dynamic')
+
+    def __str__(self):
+        return self.name
 
 
 class ActionModel(db.Model):

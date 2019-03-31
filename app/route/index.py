@@ -3,6 +3,7 @@ from flask_security import login_required, current_user
 
 from app import app
 from app.form.schedule import ScheduleForm
+from app.models.scenario import ScenarioModel
 from app.models.schedule import PeriodicityTypeModel, ScheduleModel
 
 
@@ -17,8 +18,8 @@ def main():
     )
 
 
-@app.route("/scenarios")
-def scenarios():
+@app.route("/settings")
+def settings():
     schedules = ScheduleModel.query.all()
     schedule_form = ScheduleForm()
     schedule_form.type.choices = [
@@ -33,11 +34,12 @@ def scenarios():
     )
 
 
-@app.route("/add-schedule", methods=['POST'])
-def add_schedule():
-    pass
+@app.route("/scenarios")
+def scenarios():
+    user_scenarios = ScenarioModel.query.filter_by(owner=current_user.id).all()
 
-
-@app.route("/history")
-def history():
-    return render_template("history.html", user=current_user)
+    return render_template(
+        "scenarios.html",
+        user=current_user,
+        scenarios=user_scenarios
+    )

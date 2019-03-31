@@ -10,7 +10,8 @@ class ScenarioModel(db.Model):
     run_count = db.Column(db.Integer, nullable=False, unique=False)
     frequency = db.Column(db.Integer, nullable=True, unique=False)
     owner = db.Column(db.Integer, db.ForeignKey('users.id'))
-    srchedule = db.Column(db.Integer, db.ForeignKey('schedule.id'))
+    schedule = db.Column(db.Integer, db.ForeignKey('schedule.id'))
+    action = db.Column(db.Integer, db.ForeignKey('request_action.id'))
 
     def __str__(self):
         return f"{self.id} - {self.name}"

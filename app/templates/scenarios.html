@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Run count</th>
+      <th scope="col">Frequency</th>
+      <th scope="col">Schedule</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for scenario in scenarios %}
+    <tr>
+      <th scope="row">{{ loop.index }}</th>
+      <td>{{ scenario.id }}</td>
+      <td>{{ scenario.name }}</td>
+      <td>{{ scenario.run_count }}</td>
+      <td>{{ scenario.frequency if scenario.frequency else ''}}</td>
+      <td>{{ scenario.schedule if scenario.schedule else ''}}</td>
+      <td>xxx</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
