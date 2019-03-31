@@ -44,6 +44,11 @@ def scenarios():
     )
 
 
+@app.route("/add-schedule", methods=['POST'])
+def add_schedule():
+    pass
+
+
 @app.route("/history")
 def history():
     return render_template("history.html", user=current_user)

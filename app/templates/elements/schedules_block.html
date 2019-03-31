@@ -37,8 +37,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form>
+            <form id="add-schedule">
+                <div class="modal-body">
                     <div class="mb-3">
                         <label>Schedule name:</label>
                         {{ schedule_form.name(class_="form-control", type="text")}}
@@ -51,12 +51,17 @@
                         <label>Schedule type:</label>
                         {{ schedule_form.type(class_="custom-select d-block w-100")}}
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+<script>
+    $('#add-schedule').submit(function(event) {
+        event.preventDefault();
+    })
+</script>
