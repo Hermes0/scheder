@@ -9,3 +9,15 @@ li[role="schedule"]:hover {
 li[role="schedule"]:active {
     background-color: #f8f9fa!important;
 }
+
+.actions-col {
+    font-weight: 500;
+}
+
+#.actions-row:hover {
+#    color: #28a745!important;
+#}
+
+.actions-cell {
+    font-size: 14px;
+}

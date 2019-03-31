@@ -3,6 +3,7 @@ from flask_security import login_required, current_user
 
 from app import app
 from app.form.schedule import ScheduleForm
+from app.models.action import RequestActionModel
 from app.models.scenario import ScenarioModel
 from app.models.schedule import PeriodicityTypeModel, ScheduleModel
 
@@ -26,9 +27,12 @@ def settings():
         (p_type.id, p_type.name) for p_type in PeriodicityTypeModel.query.all()
     ]
 
+    request_actions = RequestActionModel.query.all()
+
     return render_template(
         "form.html",
         user=current_user,
+        actions=request_actions,
         schedules=schedules,
         schedule_form=schedule_form
     )

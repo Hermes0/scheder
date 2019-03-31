@@ -1,0 +1,35 @@
+<h4 class="d-flex justify-content-between align-items-center mb-3">
+    <span class="text-muted">Actions list</span>
+    <span class="badge badge-secondary badge-pill">{{ actions|count }}</span>
+</h4>
+<ul class="list-group mb-3 schedules-block">
+    <li role="schedule" class="list-group-item d-flex justify-content-between lh-condensed">
+        <table class="table table-borderless table-hover">
+            <thead>
+                <tr>
+                    <th class="actions-col" scope="col">Name</th>
+                    <th class="actions-col" scope="col">URL</th>
+                    <th class="actions-col" scope="col">Method</th>
+                    <th class="actions-col" scope="col">Headers</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for action in actions %}
+                    <tr class="actions-row">
+                        <td class="actions-cell">{{ action.name }}</td>
+                        <td class="actions-cell">{{ action.schema }}://{{ action.url }}</td>
+                        <td class="actions-cell">{{ action.method }}</td>
+                        <td class="actions-cell">{{ action.headers }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </li>
+</ul>
+<!--<button-->
+        <!--type="button"-->
+        <!--class="btn btn-primary btn-lg btn-block"-->
+        <!--data-toggle="modal" data-target="#exampleModal">-->
+    <!--Add new schedule-->
+<!--</button>-->
+
