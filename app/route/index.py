@@ -17,17 +17,6 @@ def main():
     )
 
 
-@app.route("/test")
-def tests():
-    form = ScheduleForm()
-
-    form.type.choices = [
-        (ptype.id, ptype.name) for ptype in PeriodicityTypeModel.query.all()
-    ]
-
-    return render_template("test.html", form=form, user=current_user)
-
-
 @app.route("/scenarios")
 def scenarios():
     schedules = ScheduleModel.query.all()
