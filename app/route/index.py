@@ -12,9 +12,11 @@ from app.models.schedule import PeriodicityTypeModel, ScheduleModel
 @app.route("/index")
 @login_required
 def main():
+    user_scenarios = ScenarioModel.query.filter_by(owner=current_user.id).all()
     return render_template(
         "base.html",
         user=current_user,
+        scenarios=user_scenarios,
         is_admin=current_user.is_admin()
     )
 
@@ -30,7 +32,7 @@ def settings():
     request_actions = RequestActionModel.query.all()
 
     return render_template(
-        "form.html",
+        "settings.html",
         user=current_user,
         actions=request_actions,
         schedules=schedules,
@@ -47,3 +49,8 @@ def scenarios():
         user=current_user,
         scenarios=user_scenarios
     )
+
+
+@app.route("/logs")
+def logs():
+    return render_template("logs.html", user=current_user)

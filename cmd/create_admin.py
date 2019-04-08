@@ -23,6 +23,9 @@ def create_admin(email, password):
         data_store.create_role(
             name="ADMIN", description="Main role."
         )
+        db.session.commit()
+        role = RoleModel.query.filter_by(name="ADMIN").first()
+
     data_store.create_user(
         email=email, password=hash_password(password), roles=[role], active=True
     )

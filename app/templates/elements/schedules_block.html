@@ -1,19 +1,23 @@
 <div class="col-md-4 order-md-2 mb-4">
     <h4 class="d-flex justify-content-between align-items-center mb-3">
-        <span class="text-muted">Schedules list</span>
-        <span class="badge badge-secondary badge-pill">{{ schedules|count }}</span>
+        <span class="text-muted">Schedules list </span>
+        <span class="text-muted"><i class="fas fa-plus"></i></span>
     </h4>
-    <ul class="list-group mb-3 schedules-block">
-        {% for schedule in schedules %}
-        <li role="schedule" class="list-group-item d-flex justify-content-between lh-condensed">
-            <div>
-                <h6 class="my-0">{{schedule.name}}</h6>
-                <small class="text-muted">{{schedule.description}}</small>
-            </div>
-            <!--<span class="text-muted">{{schedule.id}}</span>-->
-        </li>
-        {% endfor %}
-    </ul>
+    <div style="height: 316px; overflow: scroll;">
+        <ul class="list-group mb-3 schedules-block">
+            {% for schedule in schedules %}
+            <li role="schedule" class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                    <h6 class="my-0">{{schedule.name}}</h6>
+                    <small class="text-muted">{{schedule.description}}</small>
+                </div>
+                <span class="text-muted edit-btn">
+                    <i class="fas fa-wrench"></i>
+                </span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
     <!--<button-->
             <!--type="button"-->
             <!--class="btn btn-primary btn-lg btn-block"-->

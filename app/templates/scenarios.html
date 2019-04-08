@@ -1,29 +1,42 @@
-{% extends "base.html" %}
-{% block content %}
 <table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Run count</th>
-      <th scope="col">Frequency</th>
-      <th scope="col">Schedule</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for scenario in scenarios %}
-    <tr>
-      <th scope="row">{{ loop.index }}</th>
-      <td>{{ scenario.id }}</td>
-      <td>{{ scenario.name }}</td>
-      <td>{{ scenario.run_count }}</td>
-      <td>{{ scenario.frequency if scenario.frequency else ''}}</td>
-      <td>{{ scenario.schedule if scenario.schedule else ''}}</td>
-      <td>xxx</td>
-    </tr>
-  {% endfor %}
-  </tbody>
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Run count</th>
+            <th scope="col">Frequency</th>
+            <th scope="col">Schedule</th>
+            <th scope="col">Action</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for scenario in scenarios %}
+        <tr>
+            <td>{{ scenario.id }}</td>
+            <td>{{ scenario.name }}</td>
+            <td>{{ scenario.run_count }}</td>
+            <td>{{ scenario.frequency if scenario.frequency else '' }}</td>
+            <td>{{ scenario.schedule.name if scenario.schedule else '' }}</td>
+            <td>{{ scenario.action.name }}</td>
+            <!--<i class="fas fa-stop"></i>-->
+            <td><span><i class="fas fa-play"></i></span></td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle"
+                            type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                       ...
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Run</a>
+                        <a class="dropdown-item" href="#">Edit</a>
+                        <a class="dropdown-item" href="#">Delete</a>
+                    </div>
+                </div>
+            <td>
+        </tr>
+    {% endfor %}
+    </tbody>
 </table>
-{% endblock %}

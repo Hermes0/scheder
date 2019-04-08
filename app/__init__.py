@@ -14,12 +14,13 @@ def create_app(config_class=None):
     app.config.from_object(app_config)
 
     from app.route import index, auth, exceptions
+
     from app.models.schedule import ScheduleModel
     from app.models.scenario import ScenarioModel
     from app.models.user import RoleModel, UserModel
-    from app.models.action import ActionModel, ActionTypeModel
+    from app.models.action import RequestActionModel
 
     db.init_app(app)
-    migration.init_app(app, db, directory='app/models/migrations')
+    migration.init_app(app, db)
 
     return app
